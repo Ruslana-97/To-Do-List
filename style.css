@@ -1,0 +1,562 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+body{
+    background-color: #222222;
+    position: relative;
+    /* z-index: 78; */
+}
+button{
+    cursor: pointer;
+}
+.none {
+    display: none;
+}
+.overflow{
+    display: none !important;
+}
+
+
+
+
+.container{
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    transition: width 0.4s ease;
+    padding: 0 20px;
+}
+
+.box{
+    width:100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title{
+    background-color: #312763;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    color: color(srgb 0.614525 0.57095 0.82905);
+    padding: 10px;
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 40px;
+    border-bottom: 7px solid color(srgb 0.614525 0.57095 0.82905);
+    position: relative;
+}
+.fa-house-chimney{
+    font-size: 50px;
+}
+.fa-sun{
+    position: absolute;
+    right: 48px;
+    bottom: 32px;
+    font-size: 30px;
+}
+.block{
+    background-color: #1a1a1a;
+    width: 100%;
+    border: 1px solid rgba(128, 128, 128, 0.603);
+    border-top:none;
+}
+
+.block-inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    /* height: 300px; */
+}
+.blockInput{
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input{
+    width: 75%;
+    height: 45%;
+    background: transparent;
+    border: 2px solid rgba(128, 128, 128, 0.603);
+    padding: 0 10px;
+    color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.input:focus {
+    border-color: #4da3ff;
+    box-shadow: 0 0 10px #4da3ff;
+}
+
+.btnAdd{
+    width: 15%;
+    background-color: #73e668;
+    border: none;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnAdd:hover{
+    background-color: #57d14b; 
+}
+.btnOptionen{
+    min-width: 10%;
+    /* width: 16%; */
+    height: 30px;
+    background-color: #0b497c;
+    color: white;
+    border: 1px solid #409fec;
+    margin-left: 10px;
+    color: #66b4f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.btnOptionen:hover{
+    background-color: #0d395e;
+}
+
+.box-output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lackOfTasks{
+    width: 100%;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(128, 128, 128, 0.603);
+}
+.fa-angle-right, .fa-chevron-down{
+    margin-top: 4px;
+}
+
+/* task */
+.box-output{
+   display: flex;
+   flex-direction: column;
+   z-index: 5;
+}
+.box-tasks{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: white;
+}
+.receivedTasks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    border-top: 1px solid rgba(128, 128, 128, 0.603);
+    position: relative;
+}
+.box-text-receided{
+    display: flex;
+    gap: 15px;
+    font-size: 16px;
+}
+.block-iput-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-start;
+    gap: 2px;
+}
+.addition-information{
+    font-size: 13px;
+    display: flex;
+    gap: 2px;
+}
+.fa-calendar-days, .addition_data{
+    background-color: rgba(0, 0, 0, 0.733);
+    padding: 2px;
+}
+.sofort{
+    background-color: rgb(212, 19, 19);
+}
+.fa-alarm-clock{
+    background-color: rgba(158, 158, 158, 0.733);
+    padding: 2px;
+    border-radius: 50%;
+}
+
+.addition_data{
+    margin-right: 5px;
+}
+
+
+.receivedTasks:hover{
+    background-color: #0d0d0d;
+}
+.receivedTasks.active{
+    background-color: rgb(13, 70, 66);
+}
+.checkDone{
+    background-color: transparent;
+}
+.fa-ellipsis-vertical{
+    color:#409fec;
+    cursor: pointer;
+}
+
+
+.addOption{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    border-radius: 5px;
+    right: 10px;
+    bottom: -70px;
+    border: 1px solid rgba(128, 128, 128, 0.603);
+    padding: 3px;
+    z-index: 99;
+}
+.addOption > button{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 10px;
+}
+.addOption>button:hover{
+    background-color: rgba(128, 128, 128, 0.603);
+}
+.btnRemove{
+    color: #d55252 !important;
+}
+
+
+
+
+
+.blockOption{
+    display: flex;
+    /* width: 100%; */
+    flex-direction: column;
+
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-15px);
+    overflow: hidden;
+        transition:
+            max-height 0.5s linear,
+            opacity 0.5s linear,
+            transform 0.5s linear;
+    pointer-events: none;
+}
+
+.blockOption.active_2 {
+    height: 20%;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+
+
+.block-inputs_2{
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+.block-inputs_2 > input{
+    width: 90%;
+    height: 40px;
+    background: transparent;
+    border: 2px solid rgba(128, 128, 128, 0.603);
+    padding: 0 10px;
+    color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 10px;
+}
+textarea{
+    background: transparent;
+    border: 2px solid rgba(128, 128, 128, 0.603);
+    padding: 0 10px;
+    color: white;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    resize: none;
+    width: auto;
+    height: 115px;
+}
+.block-inputs_2 > input:focus{
+    border-color: #4da3ff;
+    box-shadow: 0 0 10px #4da3ff;
+}
+textarea:focus{
+    border-color: #4da3ff;
+    box-shadow: 0 0 10px #4da3ff;
+}
+
+.box-btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+
+/* --------btnCancel-------btnRemoveSelect---btnErrin */
+.btnCancel, .btnErrin, .btnRemoveSelect{
+    background-color: #0b497c;
+    border:1px solid #409fec;
+    color:#409fec;
+    height: 30px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnRemoveSelect{
+    border-left:none;
+}
+.btnCancel:hover{
+    background-color: #0d395e;
+}
+.btnErrin{
+    width: 42%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    gap: 5px;
+}
+.btnErrin:hover {
+    background-color: #0d395e;
+}
+
+
+/* Erledigte Aufgabe */
+.block-doneTasks{
+    border-right: 1px solid rgba(128, 128, 128, 0.603);
+    border-left: 1px solid rgba(128, 128, 128, 0.603);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.603);
+    background-color: #1a1a1a;
+}
+.title_2{
+    color: white;
+}
+.doneTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+.count{
+    color: white;
+    background-color: rgb(80, 80, 80);
+    padding: 2px;
+    font-size: 13px;
+}
+.count_arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+.count_arrow .fa-angle-right, .fa-chevron-down{
+    color: rgb(206, 204, 204);
+}
+
+
+/* //Accordion */
+.box-done{
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+.box-done.open {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    opacity: 1;
+}
+
+
+
+
+.box-done .receivedTasks{
+    border-top:none !important;
+    border-bottom:1px solid rgba(128, 128, 128, 0.603);
+}
+.blockHiddenValue{
+    opacity: 0;
+    position: absolute;
+    display: block;
+}
+
+
+
+
+
+/* pop_up ---------------------------------------------------------*/
+.pop_up_addition_information {
+    width: 0;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    position: absolute; 
+    right: 0; 
+    top: -20px; 
+    padding: 0;
+    color: white;
+    border: 1px solid rgba(128, 128, 128, 0.603);
+    height: 100vh;
+    opacity: 0;
+    transition: width 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+    z-index: 99;
+}
+
+.pop_up_addition_information.open_2 {
+    width: 450px;
+    padding: 15px;
+    opacity: 1;
+}
+
+.block_add_info2 h4 > span{
+    color: rgb(216, 52, 52);
+}
+.block_add_info2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+.block_add_info2 > input{
+    background-color: transparent;
+    width: 100%;
+    border: 2px solid rgba(128, 128, 128, 0.603);
+    padding: 0 10px;
+    color: white;
+    transition: border-color 0.3s ease,
+    box-shadow 0.3s ease;
+    height: 30px;
+}
+.errinern-data{
+    width: 100%;
+}
+.errinern-data input{
+    background-color: transparent;
+    width: 100%;
+    border: 2px solid rgba(128, 128, 128, 0.603);
+    padding: 0 10px;
+    color: white;
+    transition: border-color 0.3s ease,
+    box-shadow 0.3s ease;
+    height: 30px;
+}
+textarea{
+    width: 100%;
+    outline: none;
+    padding-top:5px;
+}
+.block_add_info2>input:focus {
+    border-color: #4da3ff;
+    box-shadow: 0 0 10px #4da3ff;
+}
+.errinern-data input:focus {
+    border-color: #4da3ff;
+    box-shadow: 0 0 10px #4da3ff;
+}
+select{
+    width: 90%;
+    height: 30px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    color:white;
+    padding:0 5px;
+}
+select option {
+    background-color: #333;
+    color: #fff;
+}
+
+
+.select-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 20px 0 ;
+}
+
+.block_add_info2 .box-btn{
+    width: 100%;
+    margin: auto;
+    border-top: 1px solid rgba(128, 128, 128, 0.603);
+}
+.block_add_info2 .box-btn > button{
+    margin: 15px auto;
+    width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:910px) {
+    .box .check-text, .optionen-text {
+        display: none;
+    }
+    .blockOption .text-abrechnen{
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width:650px) {
+    .pop_up_addition_information.open_2 {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .btnErrin{
+        width: 10%;
+    }
+    .btnErrin > p{
+        display: none;
+    }
+}
