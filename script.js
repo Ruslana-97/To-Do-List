@@ -478,6 +478,7 @@ blockInputs.addEventListener('click', (e) => {
   if (!btn) return;
   check();
   if (input.value.trim() == '') return
+  // addTasks();
    setTimeout(() => {
      addTasks(); 
   }, 400);

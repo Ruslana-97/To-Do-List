@@ -8,7 +8,7 @@ export const btnCancel = document.querySelector('.btnCancel');
 //Input, data, textarea
 export const input = document.querySelector(".input");
 export const termin = document.querySelector('.termin');
-export const textarea = document.querySelector(".blockOption > textarea");
+export const textarea = document.querySelector(".textarea_1");
 export const memoryTermin = document.querySelector(".erinnernTermin");
 
 //emptytext

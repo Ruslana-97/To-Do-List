@@ -259,17 +259,16 @@ button{
 
 .blockOption{
     display: flex;
-    /* width: 100%; */
+    width: 100%;
     flex-direction: column;
-
-    max-height: 0;
+    align-items: stretch;
     opacity: 0;
+    height: 0;
     transform: translateY(-15px);
     overflow: hidden;
         transition:
-            max-height 0.5s linear,
-            opacity 0.5s linear,
-            transform 0.5s linear;
+            opacity 0.2s linear,
+            transform 0.2s linear;
     pointer-events: none;
 }
 
@@ -278,6 +277,7 @@ button{
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    overflow: visible;
 }
 
 
@@ -297,10 +297,10 @@ button{
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 10px;
 }
-textarea{
+.textarea_1{
     background: transparent;
     border: 2px solid rgba(128, 128, 128, 0.603);
-    padding: 0 10px;
+    padding: 10px;
     color: white;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 10px;
@@ -476,10 +476,15 @@ textarea:focus{
     box-shadow 0.3s ease;
     height: 30px;
 }
-textarea{
+.textArea_Pop{
     width: 100%;
     outline: none;
     padding-top:5px;
+    background-color: transparent;
+    height: 115px;
+    padding:10px;
+    color: white;
+    resize: none;
 }
 .block_add_info2>input:focus {
     border-color: #4da3ff;
