@@ -151,6 +151,7 @@ if (dateValue && dateValue < today) {
 
   inputCheck.forEach(item => {
     item.addEventListener('input', function () {
+        document.querySelectorAll('.addOption').forEach(el => el.classList.add('overflow'));
         const parentBox = this.closest(".box-tasks");
         const textTask = parentBox.querySelector(".textOfTask");
       if (this.checked) {
@@ -200,15 +201,61 @@ function updateDoneBlock() {
 }
 
 
+function openEdit(task) {
+  if (!task) return;
+
+  activeTask = task;
+
+  // Прибираємо клас active у всіх тасок
+  document.querySelectorAll('.receivedTasks').forEach(el => el.classList.remove('active'));
+  activeTask.classList.add('active');
+
+  // Заповнюємо pop
+  inputPop.value = activeTask.querySelector('.textOfTask2').textContent;
+  textAreaPop.value = activeTask.querySelector('.textArea2').textContent;
+  terminPop.value = activeTask.querySelector('.infoTermin').textContent;
+
+  const memoryText = activeTask.querySelector('.memoryInfo').textContent.trim();
+  const memoryType = activeTask.querySelector('.memoryType').textContent.trim();
+
+  // Якщо є memoryInfo — показуємо блок
+  if (memoryText !== "") {
+    erinnernData.classList.remove('overflow');
+    select.value = memoryType || "Datum";
+
+    if (select.value === "Datum") {
+      erinnernTerminPop.value = memoryText;
+      erinnernTerminPop.classList.remove('overflow');
+    } else {
+      erinnernTerminPop.value = "";
+      erinnernTerminPop.classList.add('overflow');
+    }
+  } else {
+    // Якщо memoryInfo пустий — ховаємо блок
+    erinnernData.classList.add('overflow');
+    select.value = "Datum";
+    erinnernTerminPop.value = "";
+    erinnernTerminPop.classList.add('overflow');
+  }
+
+  // Відкриваємо попап
+  popBlock.classList.add('open_2');
+
+  // Закриваємо всі меню
+  document.querySelectorAll('.addOption').forEach(o => o.classList.add('overflow'));
+}
 
 //Add new Todos
 function editBocks(e) {
 
-  // --- MENU (три крапки)
+/* =========================
+     MENU (три крапки)
+  ========================= */
 if (e.target.closest('.fa-ellipsis-vertical')) {
   const task = e.target.closest('.receivedTasks');
+  if (!task) return;
+  
   const option = task.querySelector('.addOption');
-
   const isOpen = !option.classList.contains('overflow');
 
   // закриваємо всі
@@ -221,97 +268,56 @@ if (e.target.closest('.fa-ellipsis-vertical')) {
     option.classList.remove('overflow');
   }
 
+  // логіка Erinnerungen
+  const erinnernValue = task.querySelector('.memoryInfo_2');
+  if (!erinnernData || !erinnernValue) return;
+      const value = (erinnernValue.value || '').trim();
+      erinnernData.classList.toggle('overflow', value === '');
+  }
 
-const erinnernValue = task.querySelector('.memoryInfo_2');
-
-if (!erinnernData || !erinnernValue) return;
-const value = (erinnernValue.value || '').trim();
-erinnernData.classList.toggle('overflow', value === '');
-  
-// console.log(erinnernValue.value);
-  
-}
-
-  // --- DELETE
+   /* =========================
+     DELETE
+  ========================= */
   if (e.target.closest('.btnRemove')) {
     const box = e.target.closest('.box-tasks');
+    if (!box) return;
 
     if (box.querySelector('.receivedTasks.active')) {
       popBlock.classList.add('overflow');
     }
+
      setTimeout(() => {
         box.remove();
         updateDoneBlock();
         updateEmptyText();
-      }, 400);
-      
+     }, 400);
     
-
-    // countDoneTasks.textContent = boxDoneTasks.children.length;
-    // if (boxDoneTasks.children.length == 1) empteList.classList.remove('none');
-    // if (boxDoneTasks.children.length === 0) boxDone.classList.add("none");
-    // if (boxOutput.children.length === 1 ) {
-    //   empteList.classList.remove('none'); 
-    // } else {
-    //   empteList.classList.add('none');
-    // }
-
     return;
     }
 
-  // --- EDIT
-  const btnEdit = e.target.closest('.btnEdit');
-  if (!btnEdit) return;
+/* =========================
+     EDIT через кнопку
+  ========================= */
+const btnEdit = e.target.closest('.btnEdit');
+  if (btnEdit) {
+    const task = btnEdit.closest('.receivedTasks');
+    openEdit(task);
+    return;
+  }
 
-  activeTask = btnEdit.closest('.receivedTasks');
+  // --- EDIT по кліку на таску
+  const clickedTask = e.target.closest('.receivedTasks');
 
-  document
-    .querySelectorAll('.receivedTasks')
-    .forEach(el => el.classList.remove('active'));
+  if (
+    clickedTask &&
+    !e.target.closest('.checkDone') &&
+    !e.target.closest('.btnEdit') &&
+    !e.target.closest('.btnRemove') &&
+    !e.target.closest('.fa-ellipsis-vertical')
+  ) {
+    openEdit(clickedTask);
+  }
 
-  activeTask.classList.add('active');
-
-  inputPop.value =
-    activeTask.querySelector('.textOfTask2').textContent;
-
-  textAreaPop.value =
-    activeTask.querySelector('.textArea2').textContent;
-
-  terminPop.value =
-    activeTask.querySelector('.infoTermin').textContent;
-
-    const memoryText = activeTask.querySelector('.memoryInfo').textContent.trim();
-    const memoryType = activeTask.querySelector('.memoryType').textContent.trim();
-
-    // якщо є memoryInfo — показуємо блок
-    if (memoryText !== "") {
-      erinnernData.classList.remove('overflow');
-
-      select.value = memoryType || "Datum";
-
-      // якщо select = Datum => показуємо input і ставимо дату
-      if (select.value === "Datum") {
-        erinnernTerminPop.value = memoryText;
-        erinnernTerminPop.classList.remove('overflow');
-      } else {
-        // інші варіанти select
-        erinnernTerminPop.value = "";
-        erinnernTerminPop.classList.add('overflow');
-      }
-
-    } else {
-      // якщо memoryInfo пустий — ховаємо блок і очищаємо
-      erinnernData.classList.add('overflow');
-      select.value = "Datum";
-      erinnernTerminPop.value = "";
-      erinnernTerminPop.classList.add('overflow');
-    }
-
-  
-  popBlock.classList.add('open_2');
-  document
-    .querySelectorAll('.addOption')
-    .forEach(o => o.classList.add('overflow'));
 }
 
 
@@ -467,9 +473,11 @@ function doneTasksAccordion() {
 
 doneTitle.addEventListener('click', doneTasksAccordion);
 
-
-
-
+window.addEventListener('click', (e) => {
+  if (!e.target.closest('.box-tasks') && !e.target.closest('.addOptional')) {
+    document.querySelectorAll('.addOption').forEach(el => el.classList.add('overflow'));
+  }
+})
 
 
 //Even btnAdd
